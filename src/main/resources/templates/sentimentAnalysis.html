@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring AI Project</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; padding-top: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .response { margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; }
+        .response h3 { color: #4CAF50; font-size: 1.5em; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Sentiment Analysis</h2>
+    <h3>Sentiment analysis in a Large Language Model (LLM) refers to the model's ability to determine the emotional tone or opinion expressed in a text</h3>
+    <h4>
+        It identifies whether the text expresses a positive, negative, or neutral sentiment.
+        It recognizes specific emotions such as happiness, anger, sadness, or surprise.
+        It identifies the sentiment expressed in relation to specific aspects or entities within the text (Aspect-based Sentiment Analysis - ABSA).
+    </h4>
+    <div class="chat-container">
+        <h2>Sentiment Chat Request</h2>
+        <div class="chat-box">
+            <form action="#" th:action="@{/sentimentRequest}" th:method="post">
+                <div class="chat-input">
+                    <textarea name="query" required placeholder="Type your question here" rows="4" style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea><br><br>
+                </div>
+                <button type="submit">Send</button>
+            </form>
+            <div class="chat-response" th:if="${response}">
+                <p><strong>Question:</strong> <span th:text="${query}"></span></p>
+                <p><strong>Answer:</strong> <span th:text="${response}"></span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--&lt;!&ndash; JavaScript to Convert Markdown to HTML &ndash;&gt;-->
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        // Retrieve Markdown content-->
+<!--        var markdownContent = document.getElementById("markdown-content").innerText;-->
+
+<!--        // Initialize Showdown converter-->
+<!--        var converter = new showdown.Converter();-->
+
+<!--        // Convert Markdown to HTML-->
+<!--        var htmlContent = converter.makeHtml(markdownContent);-->
+
+<!--        // Render the converted HTML-->
+<!--        document.getElementById("rendered-html").innerHTML = htmlContent;-->
+<!--    });-->
+<!--</script>-->
+
+</body>
+</html>

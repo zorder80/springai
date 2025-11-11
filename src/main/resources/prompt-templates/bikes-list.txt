@@ -1,0 +1,25 @@
+Ducati Monster S2R 800, anno 2005, 803 cc, 77 CV, 179 kg, genere Naked.
+Ducati Monster S4R Testastretta, anno 2005, 998 cc, 130 CV, 181 kg, genere Naked.
+Ducati 999, anno 2005, 999 cc, 140 CV, 186 kg, genere Sportiva.
+Ducati SportClassic GT 1000, anno 2006, 992 cc, 92 CV, 185 kg, genere Classica/Naked.
+Ducati 1098, anno 2007, 1099 cc, 160 CV, 171 kg, genere Sportiva.
+Ducati Hypermotard 1100, anno 2007, 1078 cc, 90 CV, 179 kg, genere Motard.
+Ducati Monster 695, anno 2007, 695 cc, 71 CV, 161 kg, genere Naked.
+Ducati Monster 696, anno 2008, 696 cc, 80 CV, 168 kg, genere Naked.
+Ducati Streetfighter 1098, anno 2009, 1099 cc, 155 CV, 169 kg, genere Naked.
+Ducati Multistrada 1200, anno 2010, 1198 cc, 150 CV, 188 kg, genere Crossover/Turismo.
+Ducati Diavel 1200, anno 2011, 1198 cc, 162 CV, 210 kg, genere Cruiser/Naked.
+Ducati Panigale 1199, anno 2012, 1199 cc, 195 CV, 164 kg, genere Sportiva.
+Ducati Monster 821, anno 2014, 821 cc, 112 CV, 179 kg, genere Naked.
+Ducati Scrambler Icon, anno 2015, 803 cc, 75 CV, 170 kg, genere Classica/Naked.
+Ducati XDiavel, anno 2016, 1262 cc, 156 CV, 220 kg, genere Cruiser.
+Ducati Panigale V4, anno 2018, 1103 cc, 214 CV, 175 kg, genere Sportiva.
+Ducati Streetfighter V4, anno 2020, 1103 cc, 208 CV, 178 kg, genere Naked.
+Ducati Multistrada V4, anno 2021, 1158 cc, 170 CV, 215 kg, genere Crossover/Turismo.
+Ducati Monster 937, anno 2021, 937 cc, 111 CV, 166 kg, genere Naked.
+Ducati DesertX, anno 2022, 937 cc, 110 CV, 202 kg, genere Enduro Stradale.
+Ducati Panigale V4 SP, anno 2023, 1103 cc, 214 CV, 174 kg, genere Sportiva.
+Ducati Streetfighter V4 SP, anno 2023, 1103 cc, 208 CV, 177 kg, genere Naked.
+Ducati Multistrada V4 S, anno 2024, 1158 cc, 170 CV, 218 kg, genere Crossover/Turismo.
+Ducati Scrambler 1100 Tribute PRO, anno 2024, 1079 cc, 86 CV, 198 kg, genere Classica/Naked.
+

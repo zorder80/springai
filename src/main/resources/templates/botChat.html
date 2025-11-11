@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring AI Project</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .chat-container { max-width: 600px; margin: 0 auto; }
+        .chat-box { border: 1px solid #ddd; padding: 20px; border-radius: 5px; }
+        .chat-input { margin-top: 10px; display: flex; }
+        input[type="text"] { flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #ddd; }
+        button { padding: 8px 12px; border-radius: 5px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        .chat-response { margin-top: 15px; font-style: italic; color: #555; }
+    </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Simple Bot Chat</h2>
+        <div class="chat-box">
+            <div class="chat-response" th:if="${history}">
+                <ul>
+                    <li th:each="item : ${history.messages}">
+                        <p><span style="color: darkcyan">me:</span> <span th:text="${item.question}"></span></p>
+                        </p><span style="color: crimson">bot:</span> <span th:text="${item.answer}"></span></p>
+                    </li>
+                </ul>
+                <br>
+            </div>
+            <form action="#" th:action="@{/botChat}" th:method="post" style="border-top: 1px solid #eee; padding-top: 2px;">
+                <div class="chat-input">
+                    <textarea id="query" name="query" required placeholder="Type your question here" rows="8" style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea><br><br>
+                </div>
+                <button type="submit">Send</button>
+            </form>
+            <form action="#" th:action="@{/resetBotChat}" th:method="post" style="border-top: 1px solid #eee; padding-top: 2px;">
+                <button type="submit">Reset</button>
+            </form>
+
+        </div>
+    </div>
+    
+<!--        &lt;!&ndash; JavaScript to Convert Markdown to HTML &ndash;&gt;-->
+<!--    <script>-->
+<!--        document.addEventListener("DOMContentLoaded", function() {-->
+<!--            // Retrieve Markdown content-->
+<!--            var markdownContent = document.getElementById("markdown-content").innerText;-->
+<!--            -->
+<!--            // Initialize Showdown converter-->
+<!--            var converter = new showdown.Converter();-->
+<!--            -->
+<!--            // Convert Markdown to HTML-->
+<!--            var htmlContent = converter.makeHtml(markdownContent);-->
+<!--            -->
+<!--            // Render the converted HTML-->
+<!--            document.getElementById("rendered-html").innerHTML = htmlContent;-->
+<!--        });-->
+<!--    </script>-->
+</body>
+</html>

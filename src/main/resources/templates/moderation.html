@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring AI Project</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; padding-top: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .response { margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; }
+        .response h3 { color: #4CAF50; font-size: 1.5em; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Moderation with OpenAI</h2>
+    <h3>Identify potentially harmful content in text</h3>
+    <h4><a href="https://platform.openai.com/docs/guides/moderation">moderation guide on OpenAI</a> </h4>
+    <form th:action="@{/moderationRequest}" method="post" style="max-width: 600px; margin: auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <label for="query" style="font-weight: bold; color: #333;">Enter your query:</label><br>
+        <textarea id="query" name="query" required placeholder="Type your question here" rows="4" style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea><br><br>
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Submit</button>
+    </form>
+
+    <!-- Display moderation result if available -->
+    <div class="response" th:if="${response}">
+        <h3>Moderation Result:</h3>
+
+        <p><strong>Query:</strong><span th:text="${query}"></span>
+
+            <!-- Assuming Moderation object has properties like flagged, categories, scores -->
+        <p><strong>Flagged:</strong> <span th:text="${response.flagged}">No</span></p>
+
+        <div th:if="${response.categories != null}">
+            <h4>Categories:</h4>
+            <ul>
+                <li th:each="item : ${response.categories}">
+                    <ul>
+                        <li>sexual = <span th:text="${item.sexual}"></span></li>
+                        <li>sexual/minors = <span th:text="${item.sexualMinors}"></span></li>
+                        <li>harassment = <span th:text="${item.harassment}"></span></li>
+                        <li>harassmentThreatening = <span th:text="${item.harassmentThreatening}"></span></li>
+                        <li>hate = <span th:text="${item.hate}"></span></li>
+                        <li>hateThreatening = <span th:text="${item.hateThreatening}"></span></li>
+                        <li>violence = <span th:text="${item.violence}"></span></li>
+                        <li>violenceGraphic = <span th:text="${item.violenceGraphic}"></span></li>
+                        <li>selfHarm = <span th:text="${item.selfHarm}"></span></li>
+                        <li>selfHarmIntent = <span th:text="${item.selfHarmIntent}"></span></li>
+                        <li>selfHarmInstructions = <span th:text="${item.selfHarmInstructions}"></span></li>
+                        <li>dangerousAndCriminalContent = <span th:text="${item.dangerousAndCriminalContent}"></span></li>
+                        <li>health = <span th:text="${item.health}"></span></li>
+                        <li>financial = <span th:text="${item.financial}"></span></li>
+                        <li>law = <span th:text="${item.law}"></span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div th:if="${response.categoryScores != null}">
+            <h4>Scores:</h4>
+            <ul>
+                <li th:each="item : ${response.categoryScores}">
+                    <ul>
+                        <li>sexual = <span th:text="${item.sexual}"></span></li>
+                        <li>sexual/minors = <span th:text="${item.sexualMinors}"></span></li>
+                        <li>harassment = <span th:text="${item.harassment}"></span></li>
+                        <li>harassmentThreatening = <span th:text="${item.harassmentThreatening}"></span></li>
+                        <li>hate = <span th:text="${item.hate}"></span></li>
+                        <li>hateThreatening = <span th:text="${item.hateThreatening}"></span></li>
+                        <li>violence = <span th:text="${item.violence}"></span></li>
+                        <li>violenceGraphic = <span th:text="${item.violenceGraphic}"></span></li>
+                        <li>selfHarm = <span th:text="${item.selfHarm}"></span></li>
+                        <li>selfHarmIntent = <span th:text="${item.selfHarmIntent}"></span></li>
+                        <li>selfHarmInstructions = <span th:text="${item.selfHarmInstructions}"></span></li>
+                        <li>dangerousAndCriminalContent = <span th:text="${item.dangerousAndCriminalContent}"></span></li>
+                        <li>health = <span th:text="${item.health}"></span></li>
+                        <li>financial = <span th:text="${item.financial}"></span></li>
+                        <li>law = <span th:text="${item.law}"></span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring AI Project</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; padding-top: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .response { margin-top: 30px; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; }
+        .response h3 { color: #4CAF50; font-size: 1.5em; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>RAG Chat Request</h2>
+    <h3>Enriches the prompt with relevant documents from the vector store</h3>
+    <h4>To force the template to use only data from the vector store, you must include explicit instructions, for example:
+        <p style="font-style: italic">Answer ONLY based on the provided documents. Do not use outside knowledge. If the answer is not in the documents, it responds "I don't have enough information".</p></h4>
+    <form th:action="@{/ragRequest}" method="post" style="max-width: 600px; margin: auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <label for="query" style="font-weight: bold; color: #333;">Enter your query:</label><br>
+        <textarea id="query" name="query" required placeholder="Type your question here" rows="4" style="width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea><br><br>
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">Submit</button>
+    </form>
+
+    <div th:if="${response != null}" style="max-width: 600px; margin: 20px auto; padding: 20px; background-color: #e7f3fe; border: 1px solid #b3d7ff; border-radius: 8px;">
+        <h2 style="color: #333;">Response:</h2>
+        <p th:text="${response}" style="color: #333;">Response will appear here.</p>
+    </div>
+</div>
+</body>
+</html>

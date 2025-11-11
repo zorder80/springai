@@ -1,0 +1,1 @@
+Analyze the sentiment of the following text and return 'positive', 'negative', or 'neutral': {text}

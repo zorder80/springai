@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Spring AI Project - Home</title>
+	<style>
+		/* Reset and basic styles */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: Arial, sans-serif;
+		}
+
+		body {
+			background-color: #f5f7fa;
+			color: #333;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+		}
+
+		h1 {
+			color: #4a90e2;
+			font-size: 2.5em;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size: 1.2em;
+			color: #666;
+			margin-bottom: 30px;
+		}
+
+		/* Container layout */
+		.container {
+			display: flex;
+			gap: 40px;
+			max-width: 900px;
+			width: 100%;
+		}
+
+		.column {
+			background-color: #fff;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			width: 45%;
+		}
+
+		.column h2 {
+			color: #4a90e2;
+			font-size: 1.5em;
+			margin-bottom: 15px;
+			border-bottom: 2px solid #4a90e2;
+			padding-bottom: 5px;
+		}
+
+		ul {
+			list-style-type: none;
+		}
+
+		li {
+			margin: 10px 0;
+		}
+
+		a {
+			color: #4a90e2;
+			text-decoration: none;
+			font-size: 1.1em;
+			transition: color 0.3s;
+		}
+
+		a:hover {
+			color: #2a6792;
+			text-decoration: underline;
+		}
+
+		/* Hover effect for columns */
+		.column:hover {
+			transform: translateY(-5px);
+			transition: transform 0.3s ease;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Spring AI Project</h1>
+	<h3 th:text="${usedModel}"></h3>
+	<p>Select a feature to explore</p>
+
+	<div class="container" style="display: flex; justify-content: center;">
+		<!-- Middle Column -->
+		<div class="column" style="width: 50%; text-align: left;">
+			<h2>Chat Request</h2>
+			<ul>
+				<li><a href="/showSimpleChat">Simple Request</a></li>
+			</ul>
+			<ul>
+				<li><a href="/showPromptTemplateChat">Prompt Template Request - JSON Response</a></li>
+			</ul>
+			<ul>
+				<li><a href="/showRAGRequest">RAG Request (From Local Documents)</a></li>
+			</ul>
+			<ul>
+				<li><a href="/showRAGGoogleRequest">RAG Request (From Google Apis)</a></li>
+			</ul>
+			<ul>
+				<li><a href="/showModeration">Moderation</a></li>
+			</ul>
+			<ul>
+				<li><a href="/showSentiment">Sentiment Analysis</a></li>
+			</ul>
+			<ul>
+				<li><a href="/showTools">Tools</a></li>
+			</ul>
+			<ul>
+				<li><a href="/showBotChat">Bot</a></li>
+			</ul>
+
+			<h2>Embeddings</h2>
+			<ul>
+				<li><a href="/showEmbedding">Embedding</a></li>
+				<li><a href="/showSimilarityFinder">Similarity Finder</a></li>
+			</ul>
+			<h2>Function Calling</h2>
+			<ul>
+				<li><a href="/showFunctionCalling">Function Calling</a></li>
+			</ul>
+		
+		</div>
+	</div>
+</body>
+</html>

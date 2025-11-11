@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: springai-app
+  ai:
+    openai:
+      moderation:
+        model: omni-moderation-latest
+      api-key: ${OPENAI_API_KEY}
+      embedding:
+        options:
+          model: text-embedding-3-small
+      chat:
+        options:
+          model: gpt-4o-mini
+    vectorstore:
+      qdrant:
+        client:
+          host: http://localhost
+          port: 6333
+        initialize-schema: true
+        collection-name: bikes_store
+        embedding-dimension: 1536
+sfg:
+  aiapp:
+    vectorStorePath: /tmp/vectorstore.json
+    documentsToLoad:
+      - classpath:/prompt-templates/bikes-list.txt
+#      - classpath:/prompt-templates/question-answer.txt
+google:
+  search:
+    api-key: ${GOOGLE_API_KEY}
+    engine-id: ${GOOGLE_ENGINE_ID}
+server:
+  port: 8099
