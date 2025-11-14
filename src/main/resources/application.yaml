@@ -25,7 +25,6 @@ sfg:
     vectorStorePath: /tmp/vectorstore.json
     documentsToLoad:
       - classpath:/prompt-templates/bikes-list.txt
-#      - classpath:/prompt-templates/question-answer.txt
 google:
   search:
     api-key: ${GOOGLE_API_KEY}
