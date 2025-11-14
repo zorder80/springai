@@ -36,15 +36,13 @@ public class ChatConfiguration {
 
     @Bean
     public MessageChatMemoryAdvisor messageChatMemoryAdvisor(ChatMemory chatMemory) {
-        // costruiamo l’advisor
         return MessageChatMemoryAdvisor.builder(chatMemory)
                 .order(0)  // ordine degli advisor, se ne hai più di uno
                 .build();
     }
 
     @Bean
-    public ChatClient chatClient(ChatModel chatModel,
-                                 MessageChatMemoryAdvisor memoryAdvisor) {
+    public ChatClient chatClient(ChatModel chatModel, MessageChatMemoryAdvisor memoryAdvisor) {
         return ChatClient.builder(chatModel)
                 .defaultAdvisors(memoryAdvisor)
                 .build();
