@@ -1,0 +1,10 @@
+documento_interno: Analisi Fattibilità Progetto "Aurora", id_progetto: PF-AUR-2025-Q1, budget_allocato: 450000.00, ore_sviluppo: 8500.50, rischio_valutato: Alto
+documento_interno: Specifiche Tecniche Piattaforma CRM 3.0, id_progetto: ST-CRM3-2024, budget_allocato: 120000.00, ore_sviluppo: 2100.00, rischio_valutato: Medio
+documento_interno: Piano di Rollout Globale Applicazione X, id_progetto: PR-APPL-X-2026, budget_allocato: 890000.00, ore_sviluppo: 15200.75, rischio_valutato: Alto
+documento_interno: Report Trimestrale Performance Server Cloud, id_progetto: IT-RPT-2025-Q2, budget_allocato: 15000.00, ore_sviluppo: 120.00, rischio_valutato: Basso
+documento_interno: Strategia di Acquisizione Clienti Settore Energy, id_progetto: MK-ACQ-E-2025, budget_allocato: 310000.50, ore_sviluppo: 4500.00, rischio_valutato: Medio
+documento_interno: Manuale di Formazione Interna Nuovi Assunti, id_progetto: HR-TRN-NA-2025, budget_allocato: 5000.00, ore_sviluppo: 80.00, rischio_valutato: Basso
+documento_interno: Dettaglio Fornitore Hardware Server "Alpha", id_progetto: SRM-HW-ALFA-2025, budget_allocato: 75000.00, ore_sviluppo: 300.25, rischio_valutato: Basso
+documento_interno: Roadmap Prodotto Mobile App v2.0, id_progetto: RD-MOB-V2-2026, budget_allocato: 225000.00, ore_sviluppo: 3800.00, rischio_valutato: Medio
+documento_interno: Audit Sicurezza Infrastruttura di Rete 2025, id_progetto: SEC-AUD-NET-2025, budget_allocato: 48000.00, ore_sviluppo: 650.00, rischio_valutato: Alto
+documento_interno: Bilancio Consuntivo Dipartimento Ricerca e Sviluppo, id_progetto: FIN-RS-2024, budget_allocato: 1100000.00, ore_sviluppo: 18900.00, rischio_valutato: Basso
