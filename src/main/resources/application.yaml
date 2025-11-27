@@ -25,9 +25,17 @@ sfg:
     vectorStorePath: /tmp/vectorstore.json
     documentsToLoad:
       - classpath:/prompt-templates/bikes-list.txt
+      - classpath:/prompt-templates/company-docs-list.txt
 google:
   search:
     api-key: ${GOOGLE_API_KEY}
     engine-id: ${GOOGLE_ENGINE_ID}
 server:
   port: 8099
+
+chat:
+  memory:
+    max-messages: 20
+
+service:
+  home-page-url: http://localhost:8099
