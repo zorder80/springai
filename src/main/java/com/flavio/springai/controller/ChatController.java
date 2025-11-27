@@ -1,7 +1,8 @@
 package com.flavio.springai.controller;
 
+import com.flavio.springai.dtos.BotChatAnswer;
+import com.flavio.springai.dtos.BotChatQuestion;
 import com.flavio.springai.services.*;
-import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,10 @@ public class ChatController {
     @Value("${spring.ai.openai.chat.options.model}")
     private String usedModel;
 
+    @Value("${service.home-page-url}")
+    private String homePageUrl;
+
+
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("usedModel", usedModel);
@@ -52,41 +57,49 @@ public class ChatController {
     }
 
     @GetMapping("/showSimpleChat")
-    public String showSimpleChat() {
-         return "simpleChat";
+    public String showSimpleChat(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
+        return "simpleChat";
     }
 
     @PostMapping("/simpleChat")
     public String simpleChat(@RequestParam String query, Model model) {
-    	model.addAttribute("question", query);
+        model.addAttribute("homePageUrl", homePageUrl);
+        model.addAttribute("question", query);
     	model.addAttribute("response", simpleChatService.generateAnswer(query));
         return "simpleChat";
     }
 
     @GetMapping("/showRAGRequest")
-    public String showRAGRequest() {
+    public String showRAGRequest(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         return "ragRequest";
     }
 
     @GetMapping("/showRAGGoogleRequest")
-    public String showRAGGoogleRequest() {
+    public String showRAGGoogleRequest(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         return "ragGoogleRequest";
     }
 
     @PostMapping("/ragRequest")
     public String ragRequest(@RequestParam String query, Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         model.addAttribute("response", ragChatService.call(query));
         return "ragRequest";
     }
 
     @PostMapping("/ragGoogleRequest")
     public String ragGoogleRequest(@RequestParam String query, Model model) throws GeneralSecurityException, IOException {
+        model.addAttribute("homePageUrl", homePageUrl);
         model.addAttribute("response", ragChatService.callFromGoogle(query));
+        model.addAttribute("query", query);
         return "ragGoogleRequest";
     }
 
     @GetMapping("/showPromptTemplateChat")
-    public String showChatPage() {
+    public String showChatPage(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         return "promptTemplateChat";
     }
 
@@ -99,64 +112,76 @@ public class ChatController {
         }else {
             response = promptTemplateChatService.call(city, month, language, budget);
         }
+        model.addAttribute("homePageUrl", homePageUrl);
         model.addAttribute("city",city);
         model.addAttribute("response",response);
         return "promptTemplateChat";
     }
 
     @GetMapping("/showSentiment")
-    public String showSentiment() {
+    public String showSentiment(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         return "sentimentAnalysis";
     }
 
     @PostMapping("/sentimentRequest")
     public String sentimentRequest(@RequestParam String query, Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         model.addAttribute("query", query);
         model.addAttribute("response", sentimentChatService.analyse(query));
         return "sentimentAnalysis";
     }
 
     @GetMapping("/showModeration")
-    public String showModeration() {
+    public String showModeration(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         return "moderation";
     }
 
     @PostMapping("/moderationRequest")
     public String moderationRequest(@RequestParam String query, Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         model.addAttribute("response", openAiModeration.moderate(query));
         model.addAttribute("query", query);
         return "moderation";
     }
 
     @GetMapping("/showTools")
-    public String showTools() {
+    public String showTools(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         return "tools";
     }
 
     @PostMapping("/tools")
     public String tools(@RequestParam String query, Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
         model.addAttribute("question", query);
         model.addAttribute("response", toolService.callAgent(query));
         return "tools";
     }
 
     @GetMapping("/showBotChat")
-    public String showBotChat() {
+    public String showBotChat(Model model) {
+        model.addAttribute("homePageUrl", homePageUrl);
+        model.addAttribute("conversation_id", "");
         return "botChat";
     }
 
     @PostMapping("/botChat")
-    public String botChat(@RequestParam String query, Model model) {
-        model.addAttribute("question", query);
-        model.addAttribute("response", botChatService.chat(query));
-        model.addAttribute("history", botChatService.getBotChatHistory());
+    public String botChat(@RequestParam String userMessage, @RequestParam String conversation_id,  Model model) {
+        BotChatAnswer answer = botChatService.chat(new BotChatQuestion(userMessage, conversation_id));
+        model.addAttribute("question", userMessage);
+        model.addAttribute("messages", answer.messages());
+        model.addAttribute("homePageUrl", homePageUrl);
+        model.addAttribute("conversation_id", answer.conversationId());
         return "botChat";
     }
 
-    @GetMapping("/resetBotChat")
-    public String resetBotChat(Model model) {
-        botChatService.resetBotChatHistory();
-        model.addAttribute("history", null);
+    @PostMapping("/resetBotChat")
+    public String resetBotChat(@RequestParam String conversationId, Model model) {
+        botChatService.resetConversation(conversationId);
+        model.addAttribute("homePageUrl", homePageUrl);
+        model.addAttribute("conversation_id", "");
         return "botChat";
     }
 

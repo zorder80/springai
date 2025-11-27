@@ -44,12 +44,15 @@ public class LoadVectorStore implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        vectorStoreProperties.getDocumentsToLoad().forEach(document -> {
-            TikaDocumentReader documentReader = new TikaDocumentReader(document);
-            List<Document> documents = documentReader.get();
-            TextSplitter textSplitter = new TokenTextSplitter();
-            List<Document> splitDocuments = textSplitter.apply(documents);
-            vectorStore.add(splitDocuments);
-        });
+
+//        if (vectorStore.similaritySearch("Ducati 999").isEmpty()){
+            vectorStoreProperties.getDocumentsToLoad().forEach(document -> {
+                TikaDocumentReader documentReader = new TikaDocumentReader(document);
+                List<Document> documents = documentReader.get();
+                TextSplitter textSplitter = new TokenTextSplitter();
+                List<Document> splitDocuments = textSplitter.apply(documents);
+                vectorStore.add(splitDocuments);
+            });
+//        }
     }
 }

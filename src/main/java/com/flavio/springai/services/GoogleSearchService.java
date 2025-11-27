@@ -21,6 +21,9 @@ import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Servizio per interagire con l'API di Google Search.
+ */
 @Service
 @Slf4j
 public class GoogleSearchService {
@@ -52,7 +55,7 @@ public class GoogleSearchService {
                 GoogleNetHttpTransport.newTrustedTransport(),
                 GsonFactory.getDefaultInstance(),
                 null)
-                .setApplicationName("Google Search Example")
+                .setApplicationName("My Google Search")
                 .build();
 
         // Prepara ed esegui la richiesta
@@ -60,19 +63,12 @@ public class GoogleSearchService {
         list.setKey(apiKey);
         list.setCx(engineId);
         list.setQ(query);
-
         Search results = list.execute();
-
-        // Elabora i risultati
         List<Result> items = results.getItems();
         if (items != null) {
-            for (Result result : items) {
-                log.info("Title: " + result.getTitle());
-                log.info("Link: " + result.getLink());
-            }
+            items.stream().forEach(result -> log.info("Title: " + result.getTitle() + ", Link: " + result.getLink()));
         }
-
-        // 3. Converti i risultati (DTO) in oggetti Spring AI Document
+        // Converti i risultati (DTO) in oggetti Spring AI Document
         return items.stream()
                 .map(item -> {
                     // Combina titolo e snippet per un contesto più ricco
@@ -81,49 +77,6 @@ public class GoogleSearchService {
                     java.util.Map<String, Object> metadata =
                             java.util.Map.of("source", "google-search", "url", item.getLink(), "title", item.getTitle());
                     return new Document(content, metadata);
-                })
-                .collect(Collectors.toList());
+                }).collect(Collectors.toList());
     }
-
-    /**
-     * Chiama l'API di Google Search, ottiene i risultati e li converte in Spring AI Document.
-     * @param query Il termine di ricerca.
-     * @return Una lista di Spring AI Document.
-     */
-//    public List<Document> searchAndRetrieve(String query) {
-//        // 1. Costruisci l'URL completo con tutti i parametri
-//        String uri = UriComponentsBuilder.fromUriString(baseUrl)
-//                .queryParam("key", apiKey)
-//                .queryParam("cx", engineId)
-//                .queryParam("q", query)
-//                .queryParam("num", 5) // Ad esempio, chiedi 5 risultati
-//                .toUriString();
-//        log.info("Call API: " + uri);
-//
-//        // 2. Esegui la chiamata HTTP GET e mappa la risposta
-//        GoogleSearchResponse response = restClient.get()
-//                .uri(uri)
-//                .retrieve()
-//                // Gestione di un eventuale errore 4xx/5xx qui, se necessario
-//                .body(GoogleSearchResponse.class);
-//
-//        if (response == null || response.items() == null) {
-//            return List.of();
-//        }
-//
-//        // 3. Converti i risultati (DTO) in oggetti Spring AI Document
-//        return response.items().stream()
-//                .map(item -> {
-//                    // Combina titolo e snippet per un contesto più ricco
-//                    String content = item.title() + "\n\n" + item.snippet();
-//                    // Aggiungi metadati utili per il RAG
-//                    java.util.Map<String, Object> metadata = java.util.Map.of(
-//                            "source", "google-search",
-//                            "url", item.link(),
-//                            "title", item.title()
-//                    );
-//                    return new Document(content, metadata);
-//                })
-//                .collect(Collectors.toList());
-//    }
 }
